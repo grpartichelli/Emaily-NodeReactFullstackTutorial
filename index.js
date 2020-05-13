@@ -6,6 +6,7 @@ const keys = require("./config/keys");
 const bodyParser = require("body-parser");
 
 require("./models/User");
+require("./models/Survey");
 require("./services/passport"); //runs the code inside passport
 
 const app = express();
@@ -23,6 +24,8 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app); //passes app as a paremeter of the function that the require returns
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
+
 mongoose.connect(keys.mongoURI); //connects to the database
 
 if (process.env.NODE_ENV === "production") {
